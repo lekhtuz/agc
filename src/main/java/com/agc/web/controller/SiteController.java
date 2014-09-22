@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.agc.web.domain.AgcModel;
+import com.agc.web.domain.LoginForm;
 
 @Controller
 @RequestMapping("/")
@@ -23,9 +24,23 @@ public class SiteController {
 	public String doHome(ModelMap model)
 	{
 		LOG.debug("SiteController.homePage(): agcModel=" + agcModel);
-		model.addAttribute("message", "Spring 3 MVC Hello World");
-		return "hello";
+		
+		if (agcModel.isLoggedIn()) {
+			model.addAttribute("message", "Spring 3 MVC Hello World");
+			return("hello");
+		} else {
+			agcModel.setLoggedIn(true);
+//			model.addAttribute("loginForm", new LoginForm());
+			return("login");
+		}
+	}
 
+	@RequestMapping(value="/login", method = RequestMethod.POST)
+	public String doPostLogin(@ModelAttribute("loginForm") LoginForm loginForm, ModelMap model)
+	{
+		LOG.debug("SiteController.doPostLogin(): agcModel=" + agcModel);
+		LOG.debug("SiteController.doPostLogin(): loginForm=" + loginForm);
+		return("redirect:/");
 	}
 
 	/**
@@ -35,5 +50,11 @@ public class SiteController {
 	private AgcModel getAgcModel()
 	{
 		return(agcModel);
+	}
+	
+	@ModelAttribute("loginForm")
+	private LoginForm getLoginForm()
+	{
+		return(new LoginForm());
 	}
 }
