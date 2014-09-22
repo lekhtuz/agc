@@ -53,6 +53,7 @@
 <!-- 
 					<path>/${project.build.finalName}</path>
  -->
+					<path>/agc</path>
 				</configuration>
 			</plugin>
 		</plugins>
