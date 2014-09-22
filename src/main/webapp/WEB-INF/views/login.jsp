@@ -9,7 +9,7 @@
 </head>
 <body>
 	<b>Please enter your username and password below:</b><br>
-	<form:form method="post" modelAttribute="loginForm">
+	<form:form method="post" action="/login" modelAttribute="loginForm">
 		<form:label path="username">Username:</form:label><form:input path="username" /><br>
 		<form:label path="password">Password:</form:label><form:password path="password" /><br>
 		<input type="Submit" value="Log In">
