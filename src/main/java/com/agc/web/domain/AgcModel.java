@@ -16,7 +16,7 @@ public class AgcModel implements Serializable {
 	private static final long serialVersionUID = 2997203439717041775L;
 	
 	private boolean loggedIn;
-	private LoginForm loginForm = new LoginForm();
+	private String username;
 
 	/**
 	 * @return the loggedIn
@@ -35,17 +35,17 @@ public class AgcModel implements Serializable {
 	}
 
 	/**
-	 * @return the loginForm
+	 * @return the username
 	 */
-	public LoginForm getLoginForm() {
-		return loginForm;
+	public String getUsername() {
+		return username;
 	}
 
 	/**
-	 * @param loginForm the loginForm to set
+	 * @param username the username to set
 	 */
-	public void setLoginForm(LoginForm loginForm) {
-		this.loginForm = loginForm;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	/* (non-Javadoc)
@@ -57,8 +57,8 @@ public class AgcModel implements Serializable {
 		StringBuilder builder = new StringBuilder();
 		builder.append("AgcModel [loggedIn=");
 		builder.append(loggedIn);
-		builder.append(", loginForm=");
-		builder.append(loginForm);
+		builder.append(", username=");
+		builder.append(username);
 		builder.append("]");
 		return builder.toString();
 	}

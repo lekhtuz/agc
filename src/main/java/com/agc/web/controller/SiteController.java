@@ -27,20 +27,11 @@ public class SiteController {
 		
 		if (agcModel.isLoggedIn()) {
 			model.addAttribute("message", "Spring 3 MVC Hello World");
-			return("hello");
+			return("main");
 		} else {
 			agcModel.setLoggedIn(true);
-//			model.addAttribute("loginForm", new LoginForm());
 			return("login");
 		}
-	}
-
-	@RequestMapping(value="/login", method = RequestMethod.POST)
-	public String doPostLogin(@ModelAttribute("loginForm") LoginForm loginForm, ModelMap model)
-	{
-		LOG.debug("SiteController.doPostLogin(): agcModel=" + agcModel);
-		LOG.debug("SiteController.doPostLogin(): loginForm=" + loginForm);
-		return("redirect:/");
 	}
 
 	/**
