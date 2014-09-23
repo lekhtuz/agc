@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.agc</groupId>
-	<artifactId>SpringMVC</artifactId>
+	<artifactId>agc</artifactId>
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
 	<name>SpringMVC Maven Webapp</name>
@@ -15,7 +15,7 @@
 
 	<dependencies>
 
-		<!-- Spring 3 dependencies -->
+		<!-- Spring dependencies -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
