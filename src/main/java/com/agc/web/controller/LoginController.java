@@ -1,11 +1,13 @@
 package com.agc.web.controller;
 
+import javax.validation.Valid;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,10 +28,16 @@ public class LoginController {
 	private AgcModel agcModel;
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String doPostLogin(@ModelAttribute("loginForm") LoginForm loginForm, ModelMap model)
+	public String doPostLogin(@Valid @ModelAttribute("loginForm") LoginForm loginForm, BindingResult result, ModelMap model)
 	{
-		LOG.debug("doPostLogin(): agcModel=" + agcModel);
-		LOG.debug("doPostLogin(): loginForm=" + loginForm);
+		LOG.debug("doPostLogin(): agcModel=" + agcModel + ", loginForm=" + loginForm + ", result=" + result);
+        if (result.hasErrors()) {
+            return "login";
+        }
+
+		agcModel.setLoggedIn(true);
+		agcModel.setUsername(loginForm.getUsername());
+
 		return("redirect:/");
 	}
 

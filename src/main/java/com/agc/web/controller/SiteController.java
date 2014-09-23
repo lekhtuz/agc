@@ -29,7 +29,6 @@ public class SiteController {
 			model.addAttribute("message", "Spring 3 MVC Hello World");
 			return("main");
 		} else {
-			agcModel.setLoggedIn(true);
 			return("login");
 		}
 	}
