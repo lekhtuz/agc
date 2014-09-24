@@ -27,12 +27,18 @@ public class LoginController {
 	@Autowired
 	private AgcModel agcModel;
 
+	@RequestMapping(method = RequestMethod.GET)
+	public String doGetLogin(ModelMap model)
+	{
+		return("login");
+	}
+
 	@RequestMapping(method = RequestMethod.POST)
 	public String doPostLogin(@Valid @ModelAttribute("loginForm") LoginForm loginForm, BindingResult result, ModelMap model)
 	{
 		LOG.debug("doPostLogin(): agcModel=" + agcModel + ", loginForm=" + loginForm + ", result=" + result);
         if (result.hasErrors()) {
-            return "login";
+            return("login");
         }
 
 		agcModel.setLoggedIn(true);
