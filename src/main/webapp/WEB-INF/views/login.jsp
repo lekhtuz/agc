@@ -7,13 +7,13 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>American GlassCrafters</title>
-	<link href="/resources/css/agc.css" rel="stylesheet"/>
+	<link href=<%=request.getContextPath()+"/resources/css/agc.css"%> rel="stylesheet"/>
 </head>
 <body>
 	<form:form method="post" action='<%=request.getContextPath()+"/login"%>' modelAttribute="loginForm">
 		<table id="loginBox">
 			<tr>
-				<td colspan="2" style="font-weight: bold; text-align: center;">Please enter your username and password below:</td>
+				<td colspan="2" style="font-weight: bold;">Please enter your username and password below:</td>
 			</tr>
 			<tr>
 				<td><form:label path="username">Username:</form:label></td>
