@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 
+import com.agc.persistence.domain.User;
+
 /**
  * @author lekhdm
  *
@@ -14,53 +16,23 @@ import org.springframework.stereotype.Component;
 @Scope(value="session", proxyMode=ScopedProxyMode.TARGET_CLASS)
 public class AgcModel implements Serializable {
 	private static final long serialVersionUID = 2997203439717041775L;
-	
-	private boolean loggedIn;
-	private String username;
+
+	private User loggedInUser;
 
 	/**
-	 * @return the loggedIn
+	 * @return the loggedInUser
 	 */
-	public boolean isLoggedIn()
+	public User getLoggedInUser()
 	{
-		return loggedIn;
+		return loggedInUser;
 	}
 
 	/**
-	 * @param loggedIn the loggedIn to set
+	 * @param loggedInUser the loggedInUser to set
 	 */
-	public void setLoggedIn(boolean loggedIn)
+	public void setLoggedInUser(User loggedInUser)
 	{
-		this.loggedIn = loggedIn;
-	}
-
-	/**
-	 * @return the username
-	 */
-	public String getUsername() {
-		return username;
-	}
-
-	/**
-	 * @param username the username to set
-	 */
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString()
-	{
-		StringBuilder builder = new StringBuilder();
-		builder.append("AgcModel [loggedIn=");
-		builder.append(loggedIn);
-		builder.append(", username=");
-		builder.append(username);
-		builder.append("]");
-		return builder.toString();
+		this.loggedInUser = loggedInUser;
 	}
 
 }

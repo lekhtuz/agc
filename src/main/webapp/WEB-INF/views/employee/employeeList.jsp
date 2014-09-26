@@ -7,6 +7,28 @@
 <title>American GlassCrafters</title>
 </head>
 <body>
-	<h1>Employee search form</h1>
+	<span class="table-title">Employee List</span>
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Employee Id</th>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th></th>
+		</tr>
+	</table>
 </body>
 </html>

@@ -27,8 +27,7 @@ public class LogoutController {
 	public String doGetLogout(ModelMap model)
 	{
 		LOG.debug("doPostLogout(): agcModel=" + agcModel);
-		agcModel.setLoggedIn(false);
-		agcModel.setUsername(null);
+		agcModel.setLoggedInUser(null);
 		return("redirect:/");
 	}
 

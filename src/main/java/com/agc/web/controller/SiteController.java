@@ -25,8 +25,8 @@ public class SiteController {
 	{
 		LOG.debug("SiteController.homePage(): agcModel=" + agcModel);
 		
-		if (agcModel.isLoggedIn()) {
-			model.addAttribute("message", "Spring 3 MVC Hello World");
+		if (agcModel.getLoggedInUser() != null) {
+//			model.addAttribute("message", "Spring 3 MVC Hello World");
 			return("main");
 		} else {
 			return("login");

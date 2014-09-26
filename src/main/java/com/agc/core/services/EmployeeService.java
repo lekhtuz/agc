@@ -10,6 +10,7 @@ import com.agc.persistence.domain.Employee;
  */
 public interface EmployeeService {
 	public Employee getEmployee(int id);
-	public List<Employee> search();
+	public Employee getEmployee(String username);
+	public List<Employee> getAllEmployees();
 	public int createEmployee(Employee employee);
 }

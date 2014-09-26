@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.agc.core.services.UserService;
+import com.agc.persistence.domain.User;
 import com.agc.web.domain.AgcModel;
 import com.agc.web.domain.LoginForm;
 
@@ -26,6 +28,9 @@ public class LoginController {
 
 	@Autowired
 	private AgcModel agcModel;
+	
+	@Autowired
+	private UserService userService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String doGetLogin(ModelMap model)
@@ -37,13 +42,17 @@ public class LoginController {
 	public String doPostLogin(@Valid @ModelAttribute("loginForm") LoginForm loginForm, BindingResult result, ModelMap model)
 	{
 		LOG.debug("doPostLogin(): agcModel=" + agcModel + ", loginForm=" + loginForm + ", result=" + result);
-        if (result.hasErrors()) {
-            return("login");
+		if (result.hasErrors()) {
+			return("login");
+		}
+
+		User u = getUserService().login(loginForm.getUsername(), loginForm.getPassword());
+		if (u == null) {
+			result.reject("Invalid");
+			return("login");
         }
 
-		agcModel.setLoggedIn(true);
-		agcModel.setUsername(loginForm.getUsername());
-
+    	agcModel.setLoggedInUser(u);
 		return("redirect:/");
 	}
 
@@ -60,5 +69,19 @@ public class LoginController {
 	private LoginForm getLoginForm()
 	{
 		return(new LoginForm());
+	}
+
+	/**
+	 * @return the userService
+	 */
+	public UserService getUserService() {
+		return userService;
+	}
+
+	/**
+	 * @param userService the userService to set
+	 */
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
 }

@@ -1,5 +1,7 @@
 package com.agc.web.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.agc.core.services.EmployeeService;
+import com.agc.persistence.domain.Employee;
 import com.agc.web.domain.AgcModel;
 
 /**
@@ -26,18 +29,21 @@ public class EmployeeController {
 	@Autowired
 	private AgcModel agcModel;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String displaySearchForm(Model model)
+	@RequestMapping(method = RequestMethod.GET)
+	public String displayEmployeeList(Model model)
 	{
-		LOG.debug("EmployeeController.displaySearchForm(): agcModel=" + agcModel);
-		return("employee/searchForm");
+		LOG.debug("displayEmployeeList(): agcModel=" + agcModel);
+		
+		List<Employee> list = employeeService.getAllEmployees();
+		model.addAttribute("list", list);
+		return("employee/employeeList");
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST)
 	public String displaySearchResults(Model model)
 	{
 		LOG.debug("EmployeeController.displaySearchResults(): agcModel=" + agcModel);
-		return("/employee/searchResults");
+		return("/employee/employeeList");
 	}
 
 }
