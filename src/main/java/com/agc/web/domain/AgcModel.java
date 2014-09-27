@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import com.agc.persistence.domain.User;
 
 /**
- * @author lekhdm
+ * @author Dmitry Lekhtuz
  *
  */
 @Component

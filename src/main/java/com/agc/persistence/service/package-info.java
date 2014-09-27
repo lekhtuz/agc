@@ -2,4 +2,4 @@
  * @author Dmitry Lekhtuz
  *
  */
-package com.agc.web.controller;
+package com.agc.persistence.service;

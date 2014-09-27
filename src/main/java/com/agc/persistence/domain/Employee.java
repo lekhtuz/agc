@@ -5,7 +5,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
- * @author lekhdm
+ * @author Dmitry Lekhtuz
  *
  */
 public class Employee {

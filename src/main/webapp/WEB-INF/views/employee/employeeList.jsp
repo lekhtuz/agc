@@ -11,23 +11,16 @@
 	<table>
 		<tr>
 			<th>Name</th>
-			<th>Employee Id</th>
-			<th></th>
-			<th></th>
-			<th></th>
-			<th></th>
-			<th></th>
-			<th></th>
-			<th></th>
-			<th></th>
-			<th></th>
-			<th></th>
-			<th></th>
-			<th></th>
-			<th></th>
-			<th></th>
-			<th></th>
-			<th></th>
+			<th>Employee No</th>
+			<th>Active</th>
+			<th>GC Employee</th>
+			<th>Installer</th>
+			<th>Helper</th>
+			<th>Measurer</th>
+			<th>Shop</th>
+			<th>Office</th>
+			<th>Sales</th>
+			<th>Drv Lic</th>
 		</tr>
 	</table>
 </body>

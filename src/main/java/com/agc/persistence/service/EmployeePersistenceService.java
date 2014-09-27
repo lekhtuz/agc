@@ -1,14 +1,14 @@
-package com.agc.core.services;
+package com.agc.persistence.service;
 
 import java.util.List;
 
 import com.agc.persistence.domain.Employee;
 
 /**
- * @author Dmitry Lekhtuz
+ * @author lekhdm
  *
  */
-public interface EmployeeService {
+public interface EmployeePersistenceService {
 	public Employee getEmployee(int id);
 	public Employee getEmployee(String username);
 	public List<Employee> getAllEmployees();

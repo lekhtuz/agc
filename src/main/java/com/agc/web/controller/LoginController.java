@@ -18,7 +18,7 @@ import com.agc.web.domain.AgcModel;
 import com.agc.web.domain.LoginForm;
 
 /**
- * @author lekhdm
+ * @author Dmitry Lekhtuz
  *
  */
 @Controller

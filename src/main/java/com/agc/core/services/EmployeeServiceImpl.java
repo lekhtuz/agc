@@ -1,47 +1,37 @@
 package com.agc.core.services;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import org.apache.commons.beanutils.BeanPropertyValueEqualsPredicate;
-import org.apache.commons.collections.CollectionUtils;
-
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.agc.persistence.domain.Employee;
+import com.agc.persistence.service.EmployeePersistenceService;
 
 /**
- * @author lekhdm
+ * @author Dmitry Lekhtuz
  *
  */
-@Component
+@Service
 public class EmployeeServiceImpl implements EmployeeService {
-	private static List<Employee> storage = new ArrayList<Employee>();
-
-	static {
-		Employee e = new Employee();
-		
-		e.setId(1);
-		e.setFirstName("Admin_first");
-		e.setLastName("Admin_last");
-		storage.add(e);
-	}
+	@Autowired
+	private EmployeePersistenceService employeePersistenceService;
 
 	/* (non-Javadoc)
 	 * @see com.agc.core.services.EmployeePersistenceService#getEmployee(int)
 	 */
 	public Employee getEmployee(int id)
 	{
-		BeanPropertyValueEqualsPredicate predicate = new BeanPropertyValueEqualsPredicate("id", id);
-		Employee e = (Employee)CollectionUtils.find(storage, predicate);
+		Employee e = employeePersistenceService.getEmployee(id);
 		return(e);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.agc.core.services.EmployeePersistenceService#getEmployee(String)
+	 */
 	public Employee getEmployee(String username)
 	{
-		BeanPropertyValueEqualsPredicate predicate = new BeanPropertyValueEqualsPredicate("username", username);
-		Employee e = (Employee)CollectionUtils.find(storage, predicate);
+		Employee e = employeePersistenceService.getEmployee(username);
 		return(e);
 	}
 
@@ -50,7 +40,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	 */
 	public List<Employee> getAllEmployees()
 	{
-		return(Collections.unmodifiableList(storage));
+		List<Employee> list = employeePersistenceService.getAllEmployees();
+		return(list);
 	}
 
 	/* (non-Javadoc)
@@ -58,8 +49,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	 */
 	public int createEmployee(Employee employee)
 	{
-		storage.add(employee);
-		return(storage.size() - 1);
+		int employeeId = employeePersistenceService.createEmployee(employee);
+		return(employeeId);
 	}
 
 }

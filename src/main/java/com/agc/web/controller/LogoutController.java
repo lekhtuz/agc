@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.agc.web.domain.AgcModel;
 
 /**
- * @author lekhdm
+ * @author Dmitry Lekhtuz
  *
  */
 @Controller

@@ -30,4 +30,15 @@
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"
 		p:basename="messages"
 	/>
+
+	<bean id="employeePersistenceService" class="com.agc.persistence.service.EmployeePersistenceServiceImplMock">
+	</bean>
+
+	<bean id="userPersistenceServiceMock" class="com.agc.persistence.service.UserPersistenceServiceImplMock">
+	</bean>
+
+	<bean id="userPersistenceService" class="com.agc.persistence.service.UserPersistenceServiceImplDF">
+		<property name="baseUrl" value="http://localhost:8081/rest/agc"/>
+		<property name="tableName" value="Users"/>
+	</bean>
 </beans>

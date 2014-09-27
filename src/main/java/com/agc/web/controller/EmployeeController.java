@@ -15,7 +15,7 @@ import com.agc.persistence.domain.Employee;
 import com.agc.web.domain.AgcModel;
 
 /**
- * @author lekhdm
+ * @author Dmitry Lekhtuz
  *
  */
 @Controller

@@ -3,7 +3,7 @@ package com.agc.core.services;
 import com.agc.persistence.domain.User;
 
 /**
- * @author lekhdm
+ * @author Dmitry Lekhtuz
  *
  */
 public interface UserService {
