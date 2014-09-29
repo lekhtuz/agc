@@ -2,7 +2,6 @@ package com.agc.core.services;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.agc.persistence.domain.Employee;
@@ -14,7 +13,6 @@ import com.agc.persistence.service.EmployeePersistenceService;
  */
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-	@Autowired
 	private EmployeePersistenceService employeePersistenceService;
 
 	/* (non-Javadoc)
@@ -22,7 +20,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	 */
 	public Employee getEmployee(int id)
 	{
-		Employee e = employeePersistenceService.getEmployee(id);
+		Employee e = getEmployeePersistenceService().getEmployee(id);
 		return(e);
 	}
 
@@ -31,7 +29,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	 */
 	public Employee getEmployee(String username)
 	{
-		Employee e = employeePersistenceService.getEmployee(username);
+		Employee e = getEmployeePersistenceService().getEmployee(username);
 		return(e);
 	}
 
@@ -40,7 +38,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	 */
 	public List<Employee> getAllEmployees()
 	{
-		List<Employee> list = employeePersistenceService.getAllEmployees();
+		List<Employee> list = getEmployeePersistenceService().getAllEmployees();
 		return(list);
 	}
 
@@ -49,8 +47,24 @@ public class EmployeeServiceImpl implements EmployeeService {
 	 */
 	public int createEmployee(Employee employee)
 	{
-		int employeeId = employeePersistenceService.createEmployee(employee);
+		int employeeId = getEmployeePersistenceService().createEmployee(employee);
 		return(employeeId);
+	}
+
+	/**
+	 * @return the employeePersistenceService
+	 */
+	public EmployeePersistenceService getEmployeePersistenceService()
+	{
+		return employeePersistenceService;
+	}
+
+	/**
+	 * @param employeePersistenceService the employeePersistenceService to set
+	 */
+	public void setEmployeePersistenceService(EmployeePersistenceService employeePersistenceService)
+	{
+		this.employeePersistenceService = employeePersistenceService;
 	}
 
 }

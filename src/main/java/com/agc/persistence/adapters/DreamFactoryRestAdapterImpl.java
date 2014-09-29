@@ -4,15 +4,14 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.collections.MapUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -26,7 +25,6 @@ import org.apache.http.util.EntityUtils;
 
 import com.agc.persistence.domain.PersistentStorageUnavailableException;
 import com.agc.persistence.domain.RecordSet;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -169,9 +167,16 @@ public class DreamFactoryRestAdapterImpl implements DatabaseAdapter {
 
 		URI uri = null;
 		try {
-			uri = new URIBuilder(getBaseUrl() + "/" + getApplicationName() + "/" + tableName).addParameter("filter", whereClause).build();
+			URIBuilder uriBuilder = new URIBuilder(getBaseUrl() + "/" + getApplicationName() + "/" + tableName);
+			
+			if (StringUtils.isNotBlank(whereClause)) {
+				uriBuilder = uriBuilder.addParameter("filter", whereClause);
+			}
+			uri = uriBuilder.build();
 		} catch (URISyntaxException e) {
+			LOG.fatal(_M + "Unable to build DreamFactory URL. Check baseUrl configuration parameter. It is set to " + getBaseUrl() + ", but can not be parsed as a valid URI", e);
 			// We should never be here. If we are, check DreamFactory url configuration settings.
+			return(new RecordSet());
 		}
 
 		HttpGet req = new HttpGet(uri);

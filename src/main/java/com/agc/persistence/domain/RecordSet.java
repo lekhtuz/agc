@@ -13,6 +13,11 @@ import org.apache.commons.collections.MapUtils;
 public class RecordSet {
 	private List<Map<String, Object>> recordList;
 
+	public RecordSet()
+	{
+		this(null);
+	}
+
 	/**
 	 * @param recordList
 	 */

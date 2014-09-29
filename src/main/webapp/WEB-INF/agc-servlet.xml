@@ -36,7 +36,10 @@
 	<bean id="userService" class="com.agc.core.services.UserServiceImpl">
 	</bean>
 
-	<bean id="employeePersistenceService" class="com.agc.persistence.service.EmployeePersistenceServiceImplMock">
+	<bean id="employeeService" class="com.agc.core.services.EmployeeServiceImpl">
+	</bean>
+
+	<bean id="employeePersistenceService" class="com.agc.persistence.service.EmployeePersistenceServiceImpl">
 	</bean>
 
 	<bean id="userPersistenceServiceMock" class="com.agc.persistence.service.UserPersistenceServiceImplMock">

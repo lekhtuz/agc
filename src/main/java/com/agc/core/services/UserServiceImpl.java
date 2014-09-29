@@ -2,7 +2,6 @@ package com.agc.core.services;
 
 import org.apache.commons.lang3.StringUtils;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.agc.persistence.domain.User;
@@ -14,10 +13,7 @@ import com.agc.persistence.service.UserPersistenceService;
  */
 @Service
 public class UserServiceImpl implements UserService {
-	@Autowired
 	private EmployeeService employeeService;
-	
-	@Autowired
 	private UserPersistenceService userPersistenceService;
 	
 	/* (non-Javadoc)
