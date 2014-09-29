@@ -9,16 +9,16 @@ import org.hibernate.validator.constraints.NotEmpty;
  *
  */
 public class User {
+	public enum UserType { UnRestricted, Restricted };
 
 	private int id;
 	private Employee employee;
+	private UserType userType;
 
-	@NotNull
-	@NotEmpty
+	@NotNull @NotEmpty
 	private String username;
 
-	@NotNull
-	@NotEmpty
+	@NotNull @NotEmpty
 	private String password;
 
 	/**
@@ -85,6 +85,20 @@ public class User {
 		this.employee = employee;
 	}
 
+	/**
+	 * @return the userType
+	 */
+	public UserType getUserType() {
+		return userType;
+	}
+
+	/**
+	 * @param userType the userType to set
+	 */
+	public void setUserType(UserType userType) {
+		this.userType = userType;
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -93,12 +107,14 @@ public class User {
 		StringBuilder builder = new StringBuilder();
 		builder.append("User [id=");
 		builder.append(id);
-		builder.append(", employee=");
-		builder.append(employee);
 		builder.append(", username=");
 		builder.append(username);
 		builder.append(", password=");
 		builder.append(password);
+		builder.append(", userType=");
+		builder.append(userType);
+		builder.append(", employee=");
+		builder.append(employee);
 		builder.append("]");
 		return builder.toString();
 	}

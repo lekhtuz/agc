@@ -27,9 +27,14 @@
 		p:suffix=".jsp"
 	/>
 
-	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource"
-		p:basename="messages"
-	/>
+	<!-- Error messages will be in messages.properties located on classpath -->
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource" p:basename="messages"/>
+
+	<!-- End of Spring setup -->
+	
+	<!-- Below are various service and persistence beans -->
+	<bean id="userService" class="com.agc.core.services.UserServiceImpl">
+	</bean>
 
 	<bean id="employeePersistenceService" class="com.agc.persistence.service.EmployeePersistenceServiceImplMock">
 	</bean>
@@ -37,8 +42,22 @@
 	<bean id="userPersistenceServiceMock" class="com.agc.persistence.service.UserPersistenceServiceImplMock">
 	</bean>
 
-	<bean id="userPersistenceService" class="com.agc.persistence.service.UserPersistenceServiceImplDF">
-		<property name="baseUrl" value="http://localhost:8081/rest/agc"/>
+	<bean id="abstractPersistenceService" abstract="true">
+		<property name="dbAdapter" ref="dreamFactoryRestAdapter"/>
+	</bean>
+
+	<bean id="userPersistenceService" parent="abstractPersistenceService" class="com.agc.persistence.service.UserPersistenceServiceImpl">
 		<property name="tableName" value="Users"/>
+	</bean>
+
+	<bean id="dreamFactoryRestAdapter" class="com.agc.persistence.adapters.DreamFactoryRestAdapterImpl" init-method="connect">
+		<property name="baseUrl" value="http://localhost:8081/rest"/>
+		<property name="applicationName" value="agc"/>
+		<property name="applicationNameHeader" value="X-DreamFactory-Application-Name"/>
+		<property name="sessionTokenHeader" value="X-DreamFactory-Session-Token"/>
+		<property name="sessionUrl" value="/user/session"/>
+		<property name="loginEmail" value="agc@lekhtuz.com"/>
+		<property name="loginPassword" value="agc"/>
+		<property name="connectTimeoutSeconds" value="5"/>
 	</bean>
 </beans>

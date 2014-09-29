@@ -14,7 +14,6 @@ import com.agc.persistence.service.UserPersistenceService;
  */
 @Service
 public class UserServiceImpl implements UserService {
-
 	@Autowired
 	private EmployeeService employeeService;
 	

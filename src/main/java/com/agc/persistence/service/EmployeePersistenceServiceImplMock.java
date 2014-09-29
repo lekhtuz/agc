@@ -10,7 +10,7 @@ import org.apache.commons.collections.CollectionUtils;
 import com.agc.persistence.domain.Employee;
 
 /**
- * @author lekhdm
+ * @author Dmitry Lekhtuz
  *
  */
 public class EmployeePersistenceServiceImplMock implements EmployeePersistenceService {
