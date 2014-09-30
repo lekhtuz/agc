@@ -47,6 +47,17 @@ public class DreamFactoryRestAdapterImpl implements DatabaseAdapter {
 
 	private String sessionId;	// Connection session id, access must be synchronized properly
 
+	public void init()
+	{
+		String _M = "int(): ";
+		LOG.info(_M + "started");
+		try {
+			connect();
+		} catch(PersistentStorageUnavailableException e) {
+			LOG.warn(_M + "DreamFactory server is not available when AGC application is starting. We will try again later.");
+		}
+		LOG.info(_M + "ended");
+	}
 	/**
 	 * @throws PersistentStorageUnavailableException
 	 */
@@ -70,14 +81,16 @@ public class DreamFactoryRestAdapterImpl implements DatabaseAdapter {
 			resp = getHttpClient().execute(req);
 			LOG.info(_M + "request executed. response=" + resp);
 			sessionId = processSessionResponse(resp);
-			LOG.info(_M + "responsed parsed. sessionId=" + sessionId);
+			LOG.info(_M + "response parsed. sessionId=" + sessionId);
 		} catch (IOException e) {
 			LOG.fatal(_M + "unable to connect to or parse response returned from DreamFactory Service Provider", e);
 			sessionId = null;
 			throw new PersistentStorageUnavailableException(e);
 		} finally {
 			try {
-				resp.close();
+				if (resp != null) {
+					resp.close();
+				}
 			} catch (IOException e) {
 				LOG.warn(_M + "unable to close CloseableHttpResponse", e);
 			}
