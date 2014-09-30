@@ -24,4 +24,17 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
+	<filter>
+		<filter-name>AccessControlFilter</filter-name>
+		<filter-class>com.agc.web.filter.AccessControlFilter</filter-class>
+		<init-param>
+			<param-name>login.url.key</param-name>
+			<param-value>/login</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>AccessControlFilter</filter-name>
+		<url-pattern>/employee/*</url-pattern>
+   </filter-mapping>
 </web-app>

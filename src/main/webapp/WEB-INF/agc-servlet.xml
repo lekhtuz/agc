@@ -1,4 +1,5 @@
-<beans xmlns="http://www.springframework.org/schema/beans"
+<beans default-autowire="byName"
+	xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:aop="http://www.springframework.org/schema/aop"
@@ -31,8 +32,8 @@
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource" p:basename="messages"/>
 
 	<!-- End of Spring setup -->
-	
-	<!-- Below are various service and persistence beans -->
+
+	<!-- Below are various service and persistence beans. These should probably be in application-context.xml -->
 	<bean id="userService" class="com.agc.core.services.UserServiceImpl">
 	</bean>
 

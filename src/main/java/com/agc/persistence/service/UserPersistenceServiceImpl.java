@@ -24,6 +24,8 @@ public class UserPersistenceServiceImpl extends AbstractPersistentService implem
 		
 		RecordSet recordSet = getDbAdapter().getRecordSet(getTableName(), "UsUserID=" + "'" + username + "'");
 		if (recordSet.size() != 1) {
+			// We got either no users or more than one user with the same username.
+			LOG.debug(_M + "ended. Number of users returned by db adapter is " + recordSet.size() + ". Should be 1.");
 			return null;
 		}
 		

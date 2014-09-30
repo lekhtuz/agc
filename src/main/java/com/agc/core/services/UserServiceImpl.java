@@ -1,7 +1,6 @@
 package com.agc.core.services;
 
 import org.apache.commons.lang3.StringUtils;
-
 import org.springframework.stereotype.Service;
 
 import com.agc.persistence.domain.User;
@@ -40,5 +39,51 @@ public class UserServiceImpl implements UserService {
 	{
 		User u = userPersistenceService.getUser(username);
 		return(u);
+	}
+
+	/**
+	 * @return the employeeService
+	 */
+	public EmployeeService getEmployeeService()
+	{
+		return employeeService;
+	}
+
+	/**
+	 * @param employeeService the employeeService to set
+	 */
+	public void setEmployeeService(EmployeeService employeeService)
+	{
+		this.employeeService = employeeService;
+	}
+
+	/**
+	 * @return the userPersistenceService
+	 */
+	public UserPersistenceService getUserPersistenceService()
+	{
+		return userPersistenceService;
+	}
+
+	/**
+	 * @param userPersistenceService the userPersistenceService to set
+	 */
+	public void setUserPersistenceService(UserPersistenceService userPersistenceService)
+	{
+		this.userPersistenceService = userPersistenceService;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("UserServiceImpl [employeeService=");
+		builder.append(employeeService);
+		builder.append(", userPersistenceService=");
+		builder.append(userPersistenceService);
+		builder.append("]");
+		return builder.toString();
 	}
 }

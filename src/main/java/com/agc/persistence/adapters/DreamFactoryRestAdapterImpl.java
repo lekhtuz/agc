@@ -211,7 +211,9 @@ public class DreamFactoryRestAdapterImpl implements DatabaseAdapter {
 			throw new PersistentStorageUnavailableException(e);
 		} finally {
 			try {
-				resp.close();
+				if (resp != null) {
+					resp.close();
+				}
 			} catch (IOException e) {
 				LOG.warn(_M + "unable to close CloseableHttpResponse", e);
 			}
