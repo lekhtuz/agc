@@ -1,6 +1,6 @@
 package com.agc.persistence.service;
 
-import com.agc.persistence.adapters.DatabaseAdapter;
+import com.agc.persistence.adapter.DatabaseAdapter;
 
 /**
  * @author lekhdm

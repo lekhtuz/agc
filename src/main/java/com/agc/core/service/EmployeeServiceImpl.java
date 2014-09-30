@@ -1,4 +1,4 @@
-package com.agc.core.services;
+package com.agc.core.service;
 
 import java.util.List;
 

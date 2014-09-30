@@ -1,4 +1,4 @@
-package com.agc.persistence.adapters;
+package com.agc.persistence.adapter;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -65,10 +65,10 @@ public class DreamFactoryRestAdapterImpl implements DatabaseAdapter {
 	{
 		String _M = "connect(): ";
 		LOG.info(_M + "preparing to establish new session");
-		String url = getBaseUrl() + getSessionUrl();
-		LOG.info(_M + "url = " + url);
+		String dreamFactoryUrl = getBaseUrl() + getSessionUrl();
+		LOG.info(_M + "Building DreamFactory Url - " + dreamFactoryUrl);
 
-		HttpPost req = new HttpPost(url);
+		HttpPost req = new HttpPost(dreamFactoryUrl);
 		req.addHeader(getApplicationNameHeader(), getApplicationName());
 		req.addHeader("Accept", ContentType.APPLICATION_JSON.getMimeType());
 		SessionRequest sessionRequest = new SessionRequest(getLoginEmail(), getLoginPassword());
@@ -180,7 +180,9 @@ public class DreamFactoryRestAdapterImpl implements DatabaseAdapter {
 
 		URI uri = null;
 		try {
-			URIBuilder uriBuilder = new URIBuilder(getBaseUrl() + "/" + getApplicationName() + "/" + tableName);
+			String dreamFactoryUrl = getBaseUrl() + "/" + getApplicationName() + "/" + tableName;
+			LOG.debug(_M + "Building dreamFactory URL - " + dreamFactoryUrl);
+			URIBuilder uriBuilder = new URIBuilder(dreamFactoryUrl);
 			
 			if (StringUtils.isNotBlank(whereClause)) {
 				uriBuilder = uriBuilder.addParameter("filter", whereClause);

@@ -1,4 +1,4 @@
-package com.agc.persistence.adapters;
+package com.agc.persistence.adapter;
 
 import com.agc.persistence.domain.RecordSet;
 

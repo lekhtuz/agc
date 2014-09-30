@@ -1,4 +1,4 @@
-package com.agc.core.services;
+package com.agc.core.service;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;

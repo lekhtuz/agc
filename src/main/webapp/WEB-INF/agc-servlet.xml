@@ -15,7 +15,7 @@
 	<!-- MVC per-servlet beans go here. They can reference beans defined in applicationContext-xml. -->
 
 	<!-- Scan the below package for components -->
-	<context:component-scan base-package="com.agc.web,com.agc.core" />
+	<context:component-scan base-package="com.agc.web" />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources -->
 	<mvc:resources mapping="/resources/**" location="/resources/"/>
@@ -34,10 +34,10 @@
 	<!-- End of Spring setup -->
 
 	<!-- Below are various service and persistence beans. These should probably be in application-context.xml -->
-	<bean id="userService" class="com.agc.core.services.UserServiceImpl">
+	<bean id="userService" class="com.agc.core.service.UserServiceImpl">
 	</bean>
 
-	<bean id="employeeService" class="com.agc.core.services.EmployeeServiceImpl">
+	<bean id="employeeService" class="com.agc.core.service.EmployeeServiceImpl">
 	</bean>
 
 	<bean id="employeePersistenceService" class="com.agc.persistence.service.EmployeePersistenceServiceImpl">
@@ -54,7 +54,7 @@
 		<property name="tableName" value="Users"/>
 	</bean>
 
-	<bean id="dreamFactoryRestAdapter" class="com.agc.persistence.adapters.DreamFactoryRestAdapterImpl" init-method="connect">
+	<bean id="dreamFactoryRestAdapter" class="com.agc.persistence.adapter.DreamFactoryRestAdapterImpl" init-method="connect">
 		<property name="baseUrl" value="http://localhost:8081/rest"/>
 		<property name="applicationName" value="agc"/>
 		<property name="applicationNameHeader" value="X-DreamFactory-Application-Name"/>

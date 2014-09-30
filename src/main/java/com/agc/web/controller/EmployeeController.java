@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.agc.core.services.EmployeeService;
+import com.agc.core.service.EmployeeService;
 import com.agc.persistence.domain.Employee;
 import com.agc.web.domain.AgcModel;
 

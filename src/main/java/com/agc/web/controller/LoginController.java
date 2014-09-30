@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.agc.core.services.UserService;
+import com.agc.core.service.UserService;
 import com.agc.persistence.domain.User;
 import com.agc.web.domain.AgcModel;
 import com.agc.web.domain.LoginForm;

@@ -2,4 +2,4 @@
  * @author Dmitry Lekhtuz
  *
  */
-package com.agc.persistence.adapters;
+package com.agc.persistence.adapter;
