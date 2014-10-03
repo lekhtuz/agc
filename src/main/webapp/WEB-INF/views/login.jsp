@@ -11,6 +11,18 @@
 	<link href=<%=request.getContextPath()+"/resources/css/agc.css"%> rel="stylesheet"/>
 </head>
 <body>
+	<table width="1028px" align="center">
+		<tr>
+			<td rowspan="2"><img src="http://glasscraftersinc.com/assets/images/logo.jpg"></td>
+			<td align="right"><span class="sizeTagLine">Distinctive Designs for Discriminating Tastes</span></td>
+		</tr>
+		<tr>
+			<td align="right" valign="middle">
+				Menu 1 | Menu 2
+			</td>
+		</tr>
+	</table>
+
 	<form:form method="post" action='<%=request.getContextPath()+"/login"%>' modelAttribute="loginForm">
 		<div id="login-box">
 			<table align="center">

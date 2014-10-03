@@ -34,12 +34,17 @@ public class RecordSet {
 
 	public int getIntValue(int index, String key)
 	{
-		return(MapUtils.getIntValue(recordList.get(index), key));
+		return(MapUtils.getIntValue(get(index), key));
 	}
 
 	public String getStringValue(int index, String key)
 	{
-		return(MapUtils.getString(recordList.get(index), key));
+		return(MapUtils.getString(get(index), key));
+	}
+
+	public Map<String, Object> get(int index)
+	{
+		return(recordList.get(index));
 	}
 
 	/* (non-Javadoc)

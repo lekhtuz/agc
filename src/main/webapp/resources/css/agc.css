@@ -1,3 +1,11 @@
+.sizeTagLine {
+	color: #8dc640;
+	font-family: "Open Sans",Ariel,sans-serif;
+	font-size: 17px;
+	line-height: 17px;
+	text-align: right;
+}
+
 #login-box {
 	margin: auto 0px;
 	text-align: center;

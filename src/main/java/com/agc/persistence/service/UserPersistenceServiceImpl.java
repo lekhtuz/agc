@@ -13,6 +13,8 @@ import com.agc.persistence.domain.User;
 public class UserPersistenceServiceImpl extends AbstractPersistentService implements UserPersistenceService {
 	private static final Log LOG = LogFactory.getLog(UserPersistenceServiceImpl.class);
 
+	private Map2BeanTransformer<User> map2UserTransformer;
+
 	/* (non-Javadoc)
 	 * @see com.agc.persistence.service.UserPersistenceService#getUser(java.lang.String)
 	 */
@@ -29,12 +31,24 @@ public class UserPersistenceServiceImpl extends AbstractPersistentService implem
 			return null;
 		}
 		
-		User u = new User();
-		u.setId(recordSet.getIntValue(0, "UsEmployeeNo"));
-		u.setUsername(recordSet.getStringValue(0, "UsUserID"));
-		u.setPassword(recordSet.getStringValue(0, "UsUserPassword"));
-		u.setUserType(User.UserType.valueOf(recordSet.getStringValue(0, "UsUserType")));
+		User u = getMap2UserTransformer().transform(recordSet.get(0));
 
 		return(u);
+	}
+
+	/**
+	 * @return the map2UserTransformer
+	 */
+	public Map2BeanTransformer<User> getMap2UserTransformer()
+	{
+		return map2UserTransformer;
+	}
+
+	/**
+	 * @param map2UserTransformer the map2UserTransformer to set
+	 */
+	public void setMap2UserTransformer(Map2BeanTransformer<User> map2UserTransformer)
+	{
+		this.map2UserTransformer = map2UserTransformer;
 	}
 }
