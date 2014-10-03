@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.agc.persistence.service;
 
 import java.util.List;
@@ -18,6 +15,8 @@ import com.agc.persistence.domain.RecordSet;
 public class EmployeePersistenceServiceImpl extends AbstractPersistentService implements EmployeePersistenceService {
 	private static final Log LOG = LogFactory.getLog(EmployeePersistenceServiceImpl.class);
 
+	private Map2BeanTransformer<Employee> map2EmployeeTransformer;
+
 	/* (non-Javadoc)
 	 * @see com.agc.persistence.service.EmployeePersistenceService#getEmployee(int)
 	 */
@@ -28,13 +27,22 @@ public class EmployeePersistenceServiceImpl extends AbstractPersistentService im
 		LOG.debug(_M + "started. id=" + id);
 		
 		RecordSet recordSet = getDbAdapter().getRecordSet(getTableName(), "EmEmployeeNo=" + id);
-		if (recordSet.size() != 1) {
+		if (recordSet.size() > 1) {
+			// We got more than one employee with the same employee id.
+			LOG.debug(_M + "ended. Number of employees returned by db adapter is " + recordSet.size() + ". Should be no more than 1. Is the database corrupted?");
 			return(null);
 		}
+
+		if (recordSet.size() == 0) {
+			// Employee not found
+			LOG.debug(_M + "ended. Employee not found");
+			return(null);
+		}
+
+		Employee employee = getMap2EmployeeTransformer().transform(recordSet.get(0));
 		
-		Employee e = new Employee();
-		
-		return(e);
+		LOG.debug(_M + "ended. emloyee=" + employee);
+		return(employee);
 	}
 
 	/* (non-Javadoc)
@@ -65,6 +73,22 @@ public class EmployeePersistenceServiceImpl extends AbstractPersistentService im
 	{
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	/**
+	 * @return the map2EmployeeTransformer
+	 */
+	public Map2BeanTransformer<Employee> getMap2EmployeeTransformer()
+	{
+		return map2EmployeeTransformer;
+	}
+
+	/**
+	 * @param map2EmployeeTransformer the map2EmployeeTransformer to set
+	 */
+	public void setMap2EmployeeTransformer(Map2BeanTransformer<Employee> map2EmployeeTransformer)
+	{
+		this.map2EmployeeTransformer = map2EmployeeTransformer;
 	}
 
 }

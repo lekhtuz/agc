@@ -42,7 +42,8 @@
 	<bean id="employeeService" class="com.agc.core.service.EmployeeServiceImpl">
 	</bean>
 
-	<bean id="employeePersistenceService" class="com.agc.persistence.service.EmployeePersistenceServiceImpl">
+	<bean id="employeePersistenceService" parent="abstractPersistenceService" class="com.agc.persistence.service.EmployeePersistenceServiceImpl">
+		<property name="tableName" value="OeEmpMaster"/>
 	</bean>
 
 	<bean id="userPersistenceServiceMock" class="com.agc.persistence.service.UserPersistenceServiceImplMock">
@@ -72,22 +73,46 @@
 		<property name="targetClass" value="com.agc.persistence.domain.User"/>
 		<property name="mappingInfo">
 			<util:list>
-				<array value-type="java.lang.String">
-					<value>id</value>
-					<value>UsEmployeeNo</value>
-				</array>
-				<array value-type="java.lang.String">
-					<value>username</value>
-					<value>UsUserID</value>
-				</array>
-				<array value-type="java.lang.String">
-					<value>password</value>
-					<value>UsUserPassword</value>
-				</array>
-				<array value-type="java.lang.String">
-					<value>userType</value>
-					<value>UsUserType</value>
-				</array>
+				<array value-type="java.lang.String"><value>id</value><value>UsEmployeeNo</value></array>
+				<array value-type="java.lang.String"><value>username</value><value>UsUserID</value></array>
+				<array value-type="java.lang.String"><value>password</value><value>UsUserPassword</value></array>
+				<array value-type="java.lang.String"><value>userType</value><value>UsUserType</value></array>
+			</util:list>
+		</property>
+	</bean>
+
+	<bean id="map2EmployeeTransformer" class="com.agc.persistence.service.Map2BeanTransformer">
+		<property name="targetClass" value="com.agc.persistence.domain.Employee"/>
+		<property name="mappingInfo">
+			<util:list>
+				<array value-type="java.lang.String"><value>id</value><value>EmEmployeeNo</value></array>
+				<array value-type="java.lang.String"><value>username</value><value>EmSoSecNo</value></array>
+				<array value-type="java.lang.String"><value>password</value><value>EmNameLast</value></array>
+				<array value-type="java.lang.String"><value>firstName</value><value>EmNameFirst</value></array>
+				<array value-type="java.lang.String"><value>lastName</value><value>EmNameMI</value></array>
+				<array value-type="java.lang.String"><value>badgeNo</value><value>EmBadgeNo</value></array>
+				<array value-type="java.lang.String"><value>hireDate0</value><value>EmDateHire0</value></array>
+				<array value-type="java.lang.String"><value>hireDate1</value><value>EmDateHire1</value></array>
+				<array value-type="java.lang.String"><value>hireDate2</value><value>EmDateHire2</value></array>
+				<array value-type="java.lang.String"><value>hireDate3</value><value>EmDateHire3</value></array>
+				<array value-type="java.lang.String"><value>termDate0</value><value>EmDateTerm0</value></array>
+				<array value-type="java.lang.String"><value>termDate1</value><value>EmDateTerm1</value></array>
+				<array value-type="java.lang.String"><value>termDate2</value><value>EmDateTerm2</value></array>
+				<array value-type="java.lang.String"><value>termDate3</value><value>EmDateTerm3</value></array>
+				<array value-type="java.lang.String"><value>gcEmployee</value><value>EmGCEmpYN</value></array>
+				<array value-type="java.lang.String"><value>install</value><value>EmInstall</value></array>
+				<array value-type="java.lang.String"><value>help</value><value>EmHelp</value></array>
+				<array value-type="java.lang.String"><value>measure</value><value>EmMeasure</value></array>
+				<array value-type="java.lang.String"><value>shop</value><value>EmShop</value></array>
+				<array value-type="java.lang.String"><value>office</value><value>EmOffice</value></array>
+				<array value-type="java.lang.String"><value>salesPerson</value><value>EmSalesPerson</value></array>
+				<array value-type="java.lang.String"><value>active</value><value>EmActive</value></array>
+				<array value-type="java.lang.String"><value>badgeTitle</value><value>EmBadgeTitle</value></array>
+				<array value-type="java.lang.String"><value>driverLic</value><value>EmDriverLicYN</value></array>
+				<array value-type="java.lang.String"><value>dateCreated</value><value>EmCreated</value></array>
+				<array value-type="java.lang.String"><value>createdBy</value><value>EmUserCreated</value></array>
+				<array value-type="java.lang.String"><value>dateModified</value><value>EmModified</value></array>
+				<array value-type="java.lang.String"><value>modifiedBy</value><value>EmUserModified</value></array>
 			</util:list>
 		</property>
 	</bean>

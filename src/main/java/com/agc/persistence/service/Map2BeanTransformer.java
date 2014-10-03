@@ -20,7 +20,7 @@ public class Map2BeanTransformer<T> {
 	@SuppressWarnings("unchecked")
 	public T transform(Map<String, Object> data)
 	{
-		String _M = "transform() :";
+		String _M = "transform(): ";
 		if (getMappingInfo() == null || targetClass == null || data == null) {
 			LOG.warn(_M + "Transformer is misconfigured or parameter is invalid.");
 			return(null);
@@ -34,16 +34,24 @@ public class Map2BeanTransformer<T> {
 			return(null);
 		}
 
-		for (String propName : data.keySet()) {
+		for (String propNames[] : getMappingInfo()) {
 			try {
-				PropertyUtils.setSimpleProperty(target, propName, data.get(propName));
+				Object targetValue = data.get(propNames[1]);
+
+				// Special cases:
+				// Property is integer, but JSON returns Double
+				if (targetValue instanceof Double) {
+					targetValue = new Integer(((Double)targetValue).intValue());
+				}
+
+				PropertyUtils.setProperty(target, propNames[0], targetValue);
 			} catch (Exception e) {
-				LOG.warn(_M + "Property " + propName + " can not be set to " + data.get(propName));
+				LOG.warn(_M + "Property " + propNames[0] + " can not be set to " + data.get(propNames[1]));
 			}
 		}
 		return(target);
 	}
-
+	
 	/**
 	 * @return the mappingInfo
 	 */
