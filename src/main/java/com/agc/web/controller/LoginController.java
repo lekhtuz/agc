@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.agc.core.service.UserService;
+import com.agc.persistence.domain.PersistentStorageUnavailableException;
 import com.agc.persistence.domain.User;
 import com.agc.web.domain.AgcModel;
 import com.agc.web.domain.LoginForm;
@@ -41,18 +42,28 @@ public class LoginController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String doPostLogin(@Valid @ModelAttribute("loginForm") LoginForm loginForm, BindingResult result, ModelMap model)
 	{
-		LOG.debug("doPostLogin(): agcModel=" + agcModel + ", loginForm=" + loginForm + ", result=" + result);
+		String _M = "doPostLogin(): ";
+		LOG.debug(_M + "started. agcModel=" + agcModel + ", loginForm=" + loginForm + ", result=" + result);
 		if (result.hasErrors()) {
 			return("login");
 		}
 
-		User u = getUserService().login(loginForm.getUsername(), loginForm.getPassword());
+		User u;
+		try {
+			u = getUserService().login(loginForm.getUsername(), loginForm.getPassword());
+		} catch(PersistentStorageUnavailableException e) {
+			LOG.error(_M + "persistent storage is inavailable.", e);
+			result.reject("Unavailable");
+			return("login");
+		}
+
 		if (u == null) {
 			result.reject("Invalid");
 			return("login");
         }
 
     	agcModel.setLoggedInUser(u);
+    	LOG.debug(_M + "ended. login successful. user=" + u);
 		return("redirect:/");
 	}
 

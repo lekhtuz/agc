@@ -37,4 +37,9 @@
 		<filter-name>AccessControlFilter</filter-name>
 		<url-pattern>/employee/*</url-pattern>
    </filter-mapping>
+
+	<filter-mapping>
+		<filter-name>AccessControlFilter</filter-name>
+		<url-pattern>/pricing/*</url-pattern>
+   </filter-mapping>
 </web-app>

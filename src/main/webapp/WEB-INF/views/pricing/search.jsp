@@ -19,7 +19,7 @@
 		</tr>
 		<tr>
 			<td align="left" valign="middle">
-				<c:import url="menu.jsp"/>
+				<c:import url="../menu.jsp"/>
 			</td>
 			<td>
 				<span>Hello, ${agcModel.loggedInUser.employee.firstName}</span>
@@ -28,5 +28,6 @@
 			</td>
 		</tr>
 	</table>
+
 </body>
 </html>
