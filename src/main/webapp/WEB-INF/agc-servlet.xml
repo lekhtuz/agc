@@ -42,6 +42,11 @@
 	<bean id="employeeService" class="com.agc.core.service.EmployeeServiceImpl">
 	</bean>
 
+	<!-- Persistence service beans -->
+	<bean id="abstractPersistenceService" abstract="true">
+		<property name="dbAdapter" ref="dreamFactoryRestAdapter"/>
+	</bean>
+
 	<bean id="employeePersistenceService" parent="abstractPersistenceService" class="com.agc.persistence.service.EmployeePersistenceServiceImpl">
 		<property name="tableName" value="OeEmpMaster"/>
 	</bean>
@@ -49,14 +54,15 @@
 	<bean id="userPersistenceServiceMock" class="com.agc.persistence.service.UserPersistenceServiceImplMock">
 	</bean>
 
-	<bean id="abstractPersistenceService" abstract="true">
-		<property name="dbAdapter" ref="dreamFactoryRestAdapter"/>
-	</bean>
-
 	<bean id="userPersistenceService" parent="abstractPersistenceService" class="com.agc.persistence.service.UserPersistenceServiceImpl">
 		<property name="tableName" value="Users"/>
 	</bean>
 
+	<bean id="referenceService" parent="abstractPersistenceService" class="com.agc.persistence.service.ReferenceServiceImpl">
+		<property name="tableName" value="Common"/>
+	</bean>
+
+	<!-- Database access adapter beans -->
 	<bean id="dreamFactoryRestAdapter" class="com.agc.persistence.adapter.DreamFactoryRestAdapterImpl" init-method="connect">
 		<property name="baseUrl" value="http://localhost:8081/rest"/>
 		<property name="applicationName" value="agc"/>
@@ -69,6 +75,16 @@
 	</bean>
 
 	<!-- RecordSet Transformers -->
+	<bean id="iterable2MCSeriesTransformer" class="com.agc.persistence.service.Iterable2ListOfBeansTransformer">
+		<property name="targetClass" value="com.agc.persistence.domain.MCSeries"/>
+		<property name="mappingInfo">
+			<util:list>
+				<array value-type="java.lang.String"><value>id</value><value>CmTinyInt</value></array>
+				<array value-type="java.lang.String"><value>title</value><value>CmField01</value></array>
+			</util:list>
+		</property>
+	</bean>
+
 	<bean id="map2UserTransformer" class="com.agc.persistence.service.Map2BeanTransformer">
 		<property name="targetClass" value="com.agc.persistence.domain.User"/>
 		<property name="mappingInfo">

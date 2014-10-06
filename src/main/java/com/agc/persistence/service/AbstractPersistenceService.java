@@ -3,13 +3,12 @@ package com.agc.persistence.service;
 import com.agc.persistence.adapter.DatabaseAdapter;
 
 /**
- * @author lekhdm
+ * @author Dmitry Lekhtuz
  *
  */
-public class AbstractPersistentService {
+public class AbstractPersistenceService {
 	private String tableName;
 	private DatabaseAdapter dbAdapter;
-
 	
 	/**
 	 * @return the tableName

@@ -12,6 +12,7 @@ import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -25,6 +26,7 @@ import org.apache.http.util.EntityUtils;
 
 import com.agc.persistence.domain.PersistentStorageUnavailableException;
 import com.agc.persistence.domain.RecordSet;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -121,11 +123,13 @@ public class DreamFactoryRestAdapterImpl implements DatabaseAdapter {
 	{
 		String _M = "processSessionResponse(): ";
 		LOG.info(_M + "started");
+
 		Map<String, Object> sessionInfoMap = processJsonResponse(resp);
 		LOG.info(_M + "sessionInfoMap=" + sessionInfoMap);
 		Date ticketExpiry = new Date(MapUtils.getLongValue(sessionInfoMap, "tiket_expiry"));
 		LOG.info(_M + "ticketExpiry=" + ticketExpiry);
 		String sessionId = MapUtils.getString(sessionInfoMap, "session_id");
+
 		LOG.info(_M + "ended. sessionId=" + sessionId);
 		return(sessionId);
 	}
@@ -135,15 +139,19 @@ public class DreamFactoryRestAdapterImpl implements DatabaseAdapter {
 	 * @return
 	 * @throws IOException
 	 */
+	@SuppressWarnings("unchecked")
 	private Map<String, Object> processJsonResponse(CloseableHttpResponse resp) throws IOException
 	{
 		String _M = "processJsonResponse(): ";
 		LOG.info(_M + "started");
-		String sessionInfo = EntityUtils.toString(resp.getEntity());
+
+		String jsonInfo = EntityUtils.toString(resp.getEntity());
 		Type type = new TypeToken<Map<String, Object>>(){}.getType();
-		Map<String, Object> sessionInfoMap = gson.fromJson(sessionInfo, type);
-		LOG.info(_M + "ended. sessionInfoMap=" + sessionInfoMap);
-		return(sessionInfoMap);
+		Map<String, Object> jsonInfoMap = gson.fromJson(jsonInfo, type);
+		jsonInfoMap = MapUtils.unmodifiableMap(jsonInfoMap);
+
+		LOG.info(_M + "ended. sessionInfoMap=" + jsonInfoMap);
+		return(jsonInfoMap);
 	}
 	
 	/**
@@ -155,10 +163,12 @@ public class DreamFactoryRestAdapterImpl implements DatabaseAdapter {
 	{
 		String _M = "processRecordSetResponse(): ";
 		LOG.info(_M + "started");
+
 		Map<String, Object> recordSetMap = processJsonResponse(resp);
 		LOG.info(_M + "recordSetMap=" + recordSetMap);
 		@SuppressWarnings("unchecked")
 		RecordSet recordSet = new RecordSet((List<Map<String, Object>>)MapUtils.getObject(recordSetMap, "record"));
+
 		LOG.info(_M + "ended. recordSet=" + recordSet);
 		return(recordSet);
 	}

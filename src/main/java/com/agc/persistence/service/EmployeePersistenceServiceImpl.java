@@ -9,10 +9,10 @@ import com.agc.persistence.domain.Employee;
 import com.agc.persistence.domain.RecordSet;
 
 /**
- * @author lekhdm
+ * @author Dmitry Lekhtuz
  *
  */
-public class EmployeePersistenceServiceImpl extends AbstractPersistentService implements EmployeePersistenceService {
+public class EmployeePersistenceServiceImpl extends AbstractPersistenceService implements EmployeePersistenceService {
 	private static final Log LOG = LogFactory.getLog(EmployeePersistenceServiceImpl.class);
 
 	private Map2BeanTransformer<Employee> map2EmployeeTransformer;

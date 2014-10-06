@@ -10,7 +10,7 @@ import com.agc.persistence.domain.User;
  * @author Dmitry Lekhtuz
  *
  */
-public class UserPersistenceServiceImpl extends AbstractPersistentService implements UserPersistenceService {
+public class UserPersistenceServiceImpl extends AbstractPersistenceService implements UserPersistenceService {
 	private static final Log LOG = LogFactory.getLog(UserPersistenceServiceImpl.class);
 
 	private Map2BeanTransformer<User> map2UserTransformer;

@@ -1,16 +1,18 @@
 package com.agc.persistence.domain;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.collections.ListUtils;
 import org.apache.commons.collections.MapUtils;
+import org.apache.commons.collections.iterators.UnmodifiableIterator;
 
 /**
  * @author Dmitry Lekhtuz
  *
  */
-public class RecordSet {
+public class RecordSet implements Iterable<Map<String, Object>>{
 	private List<Map<String, Object>> recordList;
 
 	public RecordSet()
@@ -57,5 +59,12 @@ public class RecordSet {
 		builder.append(recordList);
 		builder.append("]");
 		return builder.toString();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Iterator<Map<String, Object>> iterator()
+	{
+		return(UnmodifiableIterator.decorate(recordList.iterator()));
 	}
 }
