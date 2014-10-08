@@ -7,5 +7,6 @@ import com.agc.persistence.domain.RecordSet;
  *
  */
 public interface DatabaseAdapter {
+	public RecordSet getRecordSet(String tableName);
 	public RecordSet getRecordSet(String tableName, String whereClause);
 }

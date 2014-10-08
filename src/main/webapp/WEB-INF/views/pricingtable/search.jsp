@@ -31,30 +31,36 @@
 		</tr>
 	</table>
 
-	<form:form method="post" action='<%=request.getContextPath()+"/pricing"%>' modelAttribute="searchForm">
-		<div id="config-code-results-box">
+	<form:form method="post" action='<%=request.getContextPath()+"/pricingtable"%>' modelAttribute="searchForm">
+		<div id="config-code-search-box">
 			<table width="1028px" align="center">
 				<tr>
-					<th>
-						&nbsp;
-					</th>
-					<th>Config Code</th>
-					<th>Description</th>
-					<th>
-						&nbsp;
-					</th>
+					<td colspan="2">
+						Enter config code below. Wild cards accepted. Leave blank for all codes.
+					</td>
 				</tr>
-				<c:for >
-					<tr>
-						<td>
-							<form:checkbox items="${configCodeSearchResult}" path="selected" itemLabel="" itemValue="id" delimiter="<br>"/>
-						</td>
-						<td>
-						</td>
-						<td>
-						</td>
-					</tr>
-				</c:for>
+				<tr>
+					<td class="left-td-label"><form:label path="configCode">Config code:</form:label></td>
+					<td class="right-td-field"><form:input path="configCode"/>&nbsp;<form:errors cssClass="form-errors" path="configCode"/></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						Optionally select series names if you want to limit config codes to certain series. No selection means all series.
+					</td>
+				</tr>
+				<tr>
+					<td class="left-td-label" valign="top"><form:label path="selectedSeries">Series:</form:label></td>
+					<td class="right-td-field">
+						<form:checkboxes items="${allSeries}" path="selectedSeries" itemLabel="title" itemValue="id" delimiter="<br>"/>
+						<br><form:errors cssClass="form-errors" path="selectedSeries"/>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" style="text-align: center;"><form:errors cssClass="form-errors"/></td>
+				</tr>
+				<tr>
+					<td colspan="2" style="text-align: center;"><input type="Submit" value="Search"></td>
+				</tr>
 			</table>
 		</div>
 	</form:form>

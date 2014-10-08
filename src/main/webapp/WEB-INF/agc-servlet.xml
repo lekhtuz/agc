@@ -60,6 +60,7 @@
 
 	<bean id="referenceService" parent="abstractPersistenceService" class="com.agc.persistence.service.ReferenceServiceImpl">
 		<property name="tableName" value="Common"/>
+		<property name="configInfoViewName" value="v_configcodeinfo"/>
 	</bean>
 
 	<!-- Database access adapter beans -->
@@ -81,6 +82,20 @@
 			<util:list>
 				<array value-type="java.lang.String"><value>id</value><value>CmTinyInt</value></array>
 				<array value-type="java.lang.String"><value>title</value><value>CmField01</value></array>
+			</util:list>
+		</property>
+	</bean>
+
+	<bean id="iterable2ConfigCodeInfoTransformer" class="com.agc.persistence.service.Iterable2ListOfBeansTransformer">
+		<property name="targetClass" value="com.agc.persistence.domain.ConfigCodeSearchInfo"/>
+		<property name="mappingInfo">
+			<util:list>
+				<array value-type="java.lang.String"><value>configCode</value><value>PgConfigCode</value></array>
+				<array value-type="java.lang.String"><value>series</value><value>PtSeries</value></array>
+				<array value-type="java.lang.String"><value>groupNo</value><value>PtGroupNo</value></array>
+				<array value-type="java.lang.String"><value>title</value><value>PtControlDescription</value></array>
+				<array value-type="java.lang.String"><value>priceGridNo</value><value>PtPriceGridNo</value></array>
+				<array value-type="java.lang.String"><value>priceGridNo2</value><value>PtPriceGridNo2</value></array>
 			</util:list>
 		</property>
 	</bean>

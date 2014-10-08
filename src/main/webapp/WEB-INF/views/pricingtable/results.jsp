@@ -1,7 +1,7 @@
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -32,35 +32,30 @@
 	</table>
 
 	<form:form method="post" action='<%=request.getContextPath()+"/pricing"%>' modelAttribute="searchForm">
-		<div id="config-code-search-box">
+		<div id="config-code-results-box">
 			<table width="1028px" align="center">
 				<tr>
-					<td colspan="2">
-						Enter config code below. Wild cards accepted. Leave blank for all codes.
-					</td>
+					<th>Series</th>
+					<th>Group No</th>
+					<th>Config Code</th>
+					<th>Description</th>
 				</tr>
-				<tr>
-					<td class="left-td-label"><form:label path="configCode">Config code:</form:label></td>
-					<td class="right-td-field"><form:input path="configCode"/>&nbsp;<form:errors cssClass="form-errors" path="configCode"/></td>
-				</tr>
-				<tr>
-					<td colspan="2">
-						Optionally select series names if you want to limit config codes to certain series. No selection means all series.
-					</td>
-				</tr>
-				<tr>
-					<td class="left-td-label" valign="top"><form:label path="selectedSeries">Series:</form:label></td>
-					<td class="right-td-field">
-						<form:checkboxes items="${allSeries}" path="selectedSeries" itemLabel="title" itemValue="id" delimiter="<br>"/>
-						<br><form:errors cssClass="form-errors" path="selectedSeries"/>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2" style="text-align: center;"><form:errors cssClass="form-errors"/></td>
-				</tr>
-				<tr>
-					<td colspan="2" style="text-align: center;"><input type="Submit" value="Search"></td>
-				</tr>
+				<c:forEach items="${configCodeSearchResult}" var="ccInfo">
+					<tr>
+						<td>
+							<c:out value="${ccInfo.series}"/>
+						</td>
+						<td>
+							<c:out value="${ccInfo.groupNo}"/>
+						</td>
+						<td>
+							<a href=""><c:out value="${ccInfo.configCode}"/></a>
+						</td>
+						<td>
+							<c:out value="${ccInfo.title}"/>
+						</td>
+					</tr>
+				</c:forEach>
 			</table>
 		</div>
 	</form:form>

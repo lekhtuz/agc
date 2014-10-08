@@ -9,6 +9,8 @@ public class ConfigCodeSearchInfo {
 	private int series;
 	private int groupNo;
 	private String title;
+	private int priceGridNo;
+	private int priceGridNo2;
 
 	/**
 	 * @return the configCode
@@ -74,4 +76,58 @@ public class ConfigCodeSearchInfo {
 		this.title = title;
 	}
 
+	/**
+	 * @return the priceGridNo
+	 */
+	public int getPriceGridNo()
+	{
+		return priceGridNo;
+	}
+
+	/**
+	 * @param priceGridNo the priceGridNo to set
+	 */
+	public void setPriceGridNo(int priceGridNo)
+	{
+		this.priceGridNo = priceGridNo;
+	}
+
+	/**
+	 * @return the priceGridNo2
+	 */
+	public int getPriceGridNo2()
+	{
+		return priceGridNo2;
+	}
+
+	/**
+	 * @param priceGridNo2 the priceGridNo2 to set
+	 */
+	public void setPriceGridNo2(int priceGridNo2)
+	{
+		this.priceGridNo2 = priceGridNo2;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString()
+	{
+		StringBuilder builder = new StringBuilder();
+		builder.append("ConfigCodeSearchInfo [configCode=");
+		builder.append(configCode);
+		builder.append(", series=");
+		builder.append(series);
+		builder.append(", groupNo=");
+		builder.append(groupNo);
+		builder.append(", title=");
+		builder.append(title);
+		builder.append(", priceGridNo=");
+		builder.append(priceGridNo);
+		builder.append(", priceGridNo2=");
+		builder.append(priceGridNo2);
+		builder.append("]");
+		return builder.toString();
+	}
 }

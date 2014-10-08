@@ -9,6 +9,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>American GlassCrafters</title>
 	<link href=<%=request.getContextPath()+"/resources/css/agc.css"%> rel="stylesheet"/>
+	<link href="http://glasscraftersinc.com/Assets/images/GC.ico" rel="shortcut icon">
 </head>
 <body>
 	<table width="1028px" align="center">

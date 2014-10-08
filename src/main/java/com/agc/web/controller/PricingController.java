@@ -1,5 +1,7 @@
 package com.agc.web.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.agc.persistence.domain.ConfigCodeSearchInfo;
 import com.agc.persistence.service.ReferenceService;
+
 import com.agc.web.domain.AgcModel;
 import com.agc.web.domain.ConfigCodeSearchForm;
 
@@ -21,7 +25,7 @@ import com.agc.web.domain.ConfigCodeSearchForm;
  *
  */
 @Controller
-@RequestMapping("/pricing")
+@RequestMapping("/pricingtable")
 public class PricingController {
 	private static final Logger LOG = LoggerFactory.getLogger(PricingController.class);
 
@@ -41,8 +45,8 @@ public class PricingController {
 	public String displayConfigCodeSearchForm(Model model)
 	{
 		LOG.debug("displayConfigCodeSearchForm(): started. agcModel=" + agcModel);
-		model.addAttribute("allSeries", referenceService.getMCSeries());
-		return("pricing/search");
+		model.addAttribute("allSeries", getReferenceService().getMCSeries());
+		return("pricingtable/search");
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
@@ -51,13 +55,16 @@ public class PricingController {
 		LOG.debug("displaySearchResults(): agcModel=" + agcModel + ", result=" + result);
 		
 		if (result.hasErrors()) {
-			return("pricing/search");
+			return("pricingtable/search");
 		}
 
 		String configCode = searchForm.getConfigCode();
-		int series[] = searchForm.getSelectedSeries();
+		int series[] = searchForm.getSelectedSeries();	// Not implemented yet
+
+		List<ConfigCodeSearchInfo> configCodeSearchResult = getReferenceService().getConfigCodeInfo(configCode);
+		model.addAttribute("configCodeSearchResult", configCodeSearchResult);
 		
-		return("pricing/results");
+		return("pricingtable/results");
 	}
 
 	/**
@@ -78,6 +85,20 @@ public class PricingController {
 	{
 		return(new ConfigCodeSearchForm());
 	}
-	
 
+	/**
+	 * @return the referenceService
+	 */
+	public ReferenceService getReferenceService()
+	{
+		return referenceService;
+	}
+
+	/**
+	 * @param referenceService the referenceService to set
+	 */
+	public void setReferenceService(ReferenceService referenceService)
+	{
+		this.referenceService = referenceService;
+	}
 }

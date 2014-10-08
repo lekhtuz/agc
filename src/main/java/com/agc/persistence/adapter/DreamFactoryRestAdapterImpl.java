@@ -12,7 +12,6 @@ import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -26,7 +25,6 @@ import org.apache.http.util.EntityUtils;
 
 import com.agc.persistence.domain.PersistentStorageUnavailableException;
 import com.agc.persistence.domain.RecordSet;
-
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -171,6 +169,15 @@ public class DreamFactoryRestAdapterImpl implements DatabaseAdapter {
 
 		LOG.info(_M + "ended. recordSet=" + recordSet);
 		return(recordSet);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.agc.persistence.adapter.DatabaseAdapter#getRecordSet(java.lang.String)
+	 */
+	@Override
+	public RecordSet getRecordSet(String tableName)
+	{
+		return(getRecordSet(tableName, null));
 	}
 
 	/* (non-Javadoc)
