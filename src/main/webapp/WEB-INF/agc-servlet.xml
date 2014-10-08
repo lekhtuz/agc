@@ -42,6 +42,9 @@
 	<bean id="employeeService" class="com.agc.core.service.EmployeeServiceImpl">
 	</bean>
 
+	<bean id="pricingTableService" class="com.agc.core.service.PricingTableServiceImpl">
+	</bean>
+
 	<!-- Persistence service beans -->
 	<bean id="abstractPersistenceService" abstract="true">
 		<property name="dbAdapter" ref="dreamFactoryRestAdapter"/>
@@ -60,7 +63,11 @@
 
 	<bean id="referenceService" parent="abstractPersistenceService" class="com.agc.persistence.service.ReferenceServiceImpl">
 		<property name="tableName" value="Common"/>
+	</bean>
+
+	<bean id="pricingTablePersistenceService" parent="abstractPersistenceService" class="com.agc.persistence.service.PricingTablePersistenceServiceImpl">
 		<property name="configInfoViewName" value="v_configcodeinfo"/>
+		<property name="priceGridTableName" value="OePriceGridModel"/>
 	</bean>
 
 	<!-- Database access adapter beans -->
@@ -96,6 +103,22 @@
 				<array value-type="java.lang.String"><value>title</value><value>PtControlDescription</value></array>
 				<array value-type="java.lang.String"><value>priceGridNo</value><value>PtPriceGridNo</value></array>
 				<array value-type="java.lang.String"><value>priceGridNo2</value><value>PtPriceGridNo2</value></array>
+			</util:list>
+		</property>
+	</bean>
+
+	<bean id="iterable2PriceGridModelTransformer" class="com.agc.persistence.service.Iterable2ListOfBeansTransformer">
+		<property name="targetClass" value="com.agc.persistence.domain.PriceGridModel"/>
+		<property name="mappingInfo">
+			<util:list>
+				<array value-type="java.lang.String"><value>series</value><value>PdSeries</value></array>
+				<array value-type="java.lang.String"><value>priceGridNo</value><value>PdPriceGridNo</value></array>
+				<array value-type="java.lang.String"><value>glassType</value><value>PdGlassType</value></array>
+				<array value-type="java.lang.String"><value>height</value><value>PdHeight</value></array>
+				<array value-type="java.lang.String"><value>width</value><value>PdWidth</value></array>
+				<array value-type="java.lang.String"><value>width2</value><value>PdWidth2</value></array>
+				<array value-type="java.lang.String"><value>headerRequired</value><value>PdHeaderRequired</value></array>
+				<array value-type="java.lang.String"><value>price</value><value>PdPrice</value></array>
 			</util:list>
 		</property>
 	</bean>

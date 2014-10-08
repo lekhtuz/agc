@@ -5,7 +5,7 @@ import java.util.List;
 import com.agc.persistence.domain.Employee;
 
 /**
- * @author lekhdm
+ * @author Dmitry Lekhtuz
  *
  */
 public interface EmployeePersistenceService {

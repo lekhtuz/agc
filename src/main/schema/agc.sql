@@ -14,10 +14,10 @@ create view v_configcodeinfo as
 		, PtControlDescription
 		, PtPriceGridNo
 		, PtPriceGridNo2
-	from OePriceGroupConfig pgc, OePriceControlTable pct
+	from OePriceGroupConfig pgc
+		, OePriceControlTable pct
 	where PgGroupNo = PtGroupNo
 		and PgSeries = PtSeries;
 go
 
---exec GetConfigCodeInfo @ConfigCode='DDD'
 --select * from sys.messages where message_id = 102

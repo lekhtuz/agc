@@ -31,9 +31,9 @@
 		</tr>
 	</table>
 
-	<form:form method="post" action='<%=request.getContextPath()+"/pricing"%>' modelAttribute="searchForm">
+	<form:form method="post" action='<%=request.getContextPath()+"/pricingtable"%>' modelAttribute="searchForm">
 		<div id="config-code-results-box">
-			<table width="1028px" align="center">
+			<table align="center" border="1">
 				<tr>
 					<th>Series</th>
 					<th>Group No</th>
@@ -49,7 +49,7 @@
 							<c:out value="${ccInfo.groupNo}"/>
 						</td>
 						<td>
-							<a href=""><c:out value="${ccInfo.configCode}"/></a>
+							<a href='<%=request.getContextPath()+"/pricingtable/"%><c:out value="${ccInfo.configCode}"/>'><c:out value="${ccInfo.configCode}"/></a>
 						</td>
 						<td>
 							<c:out value="${ccInfo.title}"/>

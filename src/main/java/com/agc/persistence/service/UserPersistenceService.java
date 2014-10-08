@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import com.agc.persistence.domain.User;
 
 /**
- * @author lekhdm
+ * @author Dmitry Lekhtuz
  *
  */
 @Repository
