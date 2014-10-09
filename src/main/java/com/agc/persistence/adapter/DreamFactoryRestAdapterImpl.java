@@ -186,8 +186,8 @@ public class DreamFactoryRestAdapterImpl implements DatabaseAdapter {
 	@Override
 	public RecordSet getRecordSet(String tableName, String whereClause)
 	{
-		String _M = "getRecordsFromTable(): ";
-		LOG.debug(_M + "started. tableName=" + tableName);
+		String _M = "getRecordSet(String, String): ";
+		LOG.debug(_M + "started. tableName=" + tableName + ", whereClause=" + whereClause);
 		
 		synchronized(this) {
 			if (sessionId == null) {

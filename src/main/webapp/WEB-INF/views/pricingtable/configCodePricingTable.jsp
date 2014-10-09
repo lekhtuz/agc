@@ -33,6 +33,8 @@
 		</tr>
 	</table>
 
+	<center>Config code: <c:out value="${configCode}"/></center>
+	<center>Description: <c:out value="${configCodeSearchResult.title}"/></center>
 	<table border="1" align="center">
 		<c:forEach items="${rowLabels}" var="rl" varStatus="rlstatus">
 			<tr>

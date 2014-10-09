@@ -37,12 +37,12 @@ public class PricingTableServiceImpl implements PricingTableService {
 	 * @see com.agc.core.service.PricingTableService#getPriceGridModel(int, int)
 	 */
 	@Override
-	public List<PriceGridModel> getPriceGridModel(int series, int priceGridNo)
+	public List<PriceGridModel> getPriceGridModel(int series, int priceGridNo, String glassCodes[])
 	{
 		String _M = "getConfigCodeInfo(String): ";
 		LOG.debug(_M + "started. series=" + series + ", priceGridNo=" + priceGridNo);
 
-		List<PriceGridModel> list = getPricingTablePersistenceService().getPriceGridModel(series, priceGridNo);
+		List<PriceGridModel> list = getPricingTablePersistenceService().getPriceGridModel(series, priceGridNo, glassCodes);
 
 		LOG.debug(_M + "ended. Number of records=" + list.size());
 		return(list);

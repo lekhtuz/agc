@@ -2,6 +2,8 @@ package com.agc.persistence.service;
 
 import java.util.List;
 
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -20,7 +22,7 @@ public class PricingTablePersistenceServiceImpl extends AbstractPersistenceServi
 	private Iterable2ListOfBeansTransformer<ConfigCodeSearchInfo> iterable2ConfigCodeInfoTransformer;
 	private Iterable2ListOfBeansTransformer<PriceGridModel> iterable2PriceGridModelTransformer;
 	private String configInfoViewName;
-	private String priceGridTableName;
+	private String priceGridViewName;
 
 	/* (non-Javadoc)
 	 * @see com.agc.persistence.service.PricingTablePersistenceService#getConfigCodeInfo(java.lang.String)
@@ -51,14 +53,18 @@ public class PricingTablePersistenceServiceImpl extends AbstractPersistenceServi
 	}
 
 	@Override
-	public List<PriceGridModel> getPriceGridModel(int series, int priceGridNo)
+	public List<PriceGridModel> getPriceGridModel(int series, int priceGridNo, String glassCodes[])
 	{
 		String _M = "getPriceGridModel(int, int): ";
 		LOG.debug(_M + "started. series=" + series + ", priceGridNo=" + priceGridNo);
 
 		String filter = "PdSeries = " + series + " and PdPriceGridNo = " + priceGridNo;
-		filter += " and PdGlassType in (12,13)";	// Base glass, remove after tables are generated
-		RecordSet recordSet = getDbAdapter().getRecordSet(getPriceGridTableName(), filter);
+
+		if (ArrayUtils.isNotEmpty(glassCodes)) {
+			filter += " and GlassCode in ('" + StringUtils.join(glassCodes, "', '") + "')";
+		}
+
+		RecordSet recordSet = getDbAdapter().getRecordSet(getPriceGridViewName(), filter);
 		List<PriceGridModel> list = getIterable2PriceGridModelTransformer().transform(recordSet);
 
 		LOG.debug(_M + "ended. Number of records=" + list.size());
@@ -116,18 +122,18 @@ public class PricingTablePersistenceServiceImpl extends AbstractPersistenceServi
 	}
 
 	/**
-	 * @return the priceGridTableName
+	 * @return the priceGridViewName
 	 */
-	public String getPriceGridTableName()
+	public String getPriceGridViewName()
 	{
-		return priceGridTableName;
+		return priceGridViewName;
 	}
 
 	/**
-	 * @param priceGridTableName the priceGridTableName to set
+	 * @param priceGridViewName the priceGridViewName to set
 	 */
-	public void setPriceGridTableName(String priceGridTableName)
+	public void setPriceGridViewName(String priceGridViewName)
 	{
-		this.priceGridTableName = priceGridTableName;
+		this.priceGridViewName = priceGridViewName;
 	}
 }

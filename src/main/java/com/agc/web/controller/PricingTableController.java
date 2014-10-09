@@ -37,13 +37,13 @@ public class PricingTableController {
 
 	@Autowired
 	private ConfigCodeSearchForm searchForm;
-
-	private ReferenceService referenceService;
-
-	private PricingTableService pricingTableService;
 	
 	@Autowired
 	private AgcModel agcModel;
+
+	private ReferenceService referenceService;
+	private PricingTableService pricingTableService;
+	private String standardGlassCodes[] = new String[] { "CLGTN37500", "CLGTN50000" };
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String displayConfigCodeSearchForm(Model model)
@@ -63,11 +63,12 @@ public class PricingTableController {
 		List<ConfigCodeSearchInfo> configCodeSearchResultsList = getPricingTableService().getConfigCodeInfo(configCode);
 		
 		for (ConfigCodeSearchInfo ccsi:configCodeSearchResultsList) {
-			List<PriceGridModel> priceGridModels = getPricingTableService().getPriceGridModel(ccsi.getSeries(), ccsi.getPriceGridNo());
+			List<PriceGridModel> priceGridModels = getPricingTableService().getPriceGridModel(ccsi.getSeries(), ccsi.getPriceGridNo(), getStandardGlassCodes());
 			generatePricingGrid(priceGridModels, model);
+			model.addAttribute("configCodeSearchResult", ccsi);
 		}
 
-		return("pricingtable/configCodeInfo");
+		return("pricingtable/configCodePricingTable");
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
@@ -198,6 +199,22 @@ public class PricingTableController {
 	public void setPricingTableService(PricingTableService pricingTableService)
 	{
 		this.pricingTableService = pricingTableService;
+	}
+
+	/**
+	 * @return the standardGlassCodes
+	 */
+	public String[] getStandardGlassCodes()
+	{
+		return standardGlassCodes;
+	}
+
+	/**
+	 * @param standardGlassCodes the standardGlassCodes to set
+	 */
+	public void setStandardGlassCodes(String[] standardGlassCodes)
+	{
+		this.standardGlassCodes = standardGlassCodes;
 	}
 
 	public static class PriceAreaPair {

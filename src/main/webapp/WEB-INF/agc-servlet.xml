@@ -67,7 +67,7 @@
 
 	<bean id="pricingTablePersistenceService" parent="abstractPersistenceService" class="com.agc.persistence.service.PricingTablePersistenceServiceImpl">
 		<property name="configInfoViewName" value="v_configcodeinfo"/>
-		<property name="priceGridTableName" value="OePriceGridModel"/>
+		<property name="priceGridViewName" value="v_pricegridmodel"/>
 	</bean>
 
 	<!-- Database access adapter beans -->

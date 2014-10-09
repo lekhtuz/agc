@@ -19,5 +19,5 @@ public interface PricingTablePersistenceService {
 	 */
 	public List<ConfigCodeSearchInfo> getConfigCodeInfo(String configCode);
 
-	public List<PriceGridModel> getPriceGridModel(int series, int priceGridNo);
+	public List<PriceGridModel> getPriceGridModel(int series, int priceGridNo, String glassCodes[]);
 }
