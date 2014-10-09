@@ -13,11 +13,15 @@
 	text-align: center;
 }
 
-/*
-table {
+
+#pricing-table table {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+#pricing-table td {
 	border: 1px solid black;
 }
-*/
 
 .form-errors {
 	color: red;

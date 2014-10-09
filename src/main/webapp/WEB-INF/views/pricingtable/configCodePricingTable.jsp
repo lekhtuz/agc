@@ -33,34 +33,36 @@
 		</tr>
 	</table>
 
-	<center>Config code: <c:out value="${configCode}"/></center>
-	<center>Description: <c:out value="${configCodeSearchResult.title}"/></center>
-	<table border="1" align="center">
-		<c:forEach items="${rowLabels}" var="rl" varStatus="rlstatus">
-			<tr>
-				<c:if test="${rlstatus.first}">
-					<td rowspan='<c:out value="${fn:length(rowLabels)}"/>' valign="middle" style="background-color: yellow; text-align: center;">H<br>e<br>i<br>g<br>h<br>t</td>
-				</c:if>
+	<div id="pricing-table">
+		<center>Config code: <c:out value="${configCode}"/></center>
+		<center>Description: <c:out value="${configCodeSearchResult.title}"/></center>
+		<table align="center">
+			<c:forEach items="${rowLabels}" var="rl" varStatus="rlstatus">
+				<tr>
+					<c:if test="${rlstatus.first}">
+						<td rowspan='<c:out value="${fn:length(rowLabels)}"/>' valign="middle" style="background-color: yellow; text-align: center;">H<br>e<br>i<br>g<br>h<br>t</td>
+					</c:if>
 
-				<td><c:out value="${rl}"/></td>
-				<c:forEach items="${pricingGrid[rlstatus.index]}" var="r" varStatus="rstatus">
-					<c:if test="${empty r}">
-						<td colspan="2">&nbsp;</td>
-					</c:if>
-					<c:if test="${not empty r}">
-						<td><fmt:formatNumber type="currency" groupingUsed="true" maxFractionDigits="0" value="${r.price}"/></td>
-						<td style="background-color: purple; color: white; text-align: right;"><c:out value="${r.area}"/> sq. ft.</td>
-					</c:if>
+					<td><c:out value="${rl}"/></td>
+					<c:forEach items="${pricingGrid[rlstatus.index]}" var="r" varStatus="rstatus">
+						<c:if test="${empty r}">
+							<td colspan="2">&nbsp;</td>
+						</c:if>
+						<c:if test="${not empty r}">
+							<td><fmt:formatNumber type="currency" groupingUsed="true" maxFractionDigits="0" value="${r.price}"/></td>
+							<td style="background-color: purple; color: white; text-align: right;"><c:out value="${r.area}"/> sq. ft.</td>
+						</c:if>
+					</c:forEach>
+				</tr>
+			</c:forEach>
+			<tr>
+				<td colspan="2" align="center" style="background-color: yellow">Width(A)</td>
+				<c:forEach items="${columnLabels}" var="cl">
+					<td colspan="2" align="center" style="background-color: yellow"><c:out value="${cl}"/></td>
 				</c:forEach>
 			</tr>
-		</c:forEach>
-		<tr>
-			<td colspan="2" align="center" style="background-color: yellow">Width(A)</td>
-			<c:forEach items="${columnLabels}" var="cl">
-				<td colspan="2" align="center" style="background-color: yellow"><c:out value="${cl}"/></td>
-			</c:forEach>
-		</tr>
-	</table>
+		</table>
+	</div>
 
 </body>
 </html>
