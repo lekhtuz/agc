@@ -43,22 +43,22 @@
 						<td rowspan='<c:out value="${fn:length(rowLabels)}"/>' valign="middle" style="background-color: yellow; text-align: center;">H<br>e<br>i<br>g<br>h<br>t</td>
 					</c:if>
 
-					<td><c:out value="${rl}"/></td>
+					<td style="text-align: center;"><c:out value="${rl}"/></td>
 					<c:forEach items="${pricingGrid[rlstatus.index]}" var="r" varStatus="rstatus">
 						<c:if test="${empty r}">
 							<td colspan="2">&nbsp;</td>
 						</c:if>
 						<c:if test="${not empty r}">
 							<td><fmt:formatNumber type="currency" groupingUsed="true" maxFractionDigits="0" value="${r.price}"/></td>
-							<td style="background-color: purple; color: white; text-align: right;"><c:out value="${r.area}"/> sq. ft.</td>
+							<td style="background-color: purple; color: white; text-align: right;"><c:out value="${r.area}"/> ft<sup>2</sup></td>
 						</c:if>
 					</c:forEach>
 				</tr>
 			</c:forEach>
 			<tr>
-				<td colspan="2" align="center" style="background-color: yellow">Width(A)</td>
+				<td colspan="2" style="background-color: yellow; text-align: center;">Width(A)</td>
 				<c:forEach items="${columnLabels}" var="cl">
-					<td colspan="2" align="center" style="background-color: yellow"><c:out value="${cl}"/></td>
+					<td colspan="2" style="background-color: yellow; text-align: center;"><c:out value="${cl}"/></td>
 				</c:forEach>
 			</tr>
 		</table>
