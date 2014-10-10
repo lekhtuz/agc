@@ -19,6 +19,7 @@
 		<commons.beanutils.version>1.9.2</commons.beanutils.version>
 		<commons.lang3.version>3.3.2</commons.lang3.version>
 		<junit.version>4.11</junit.version>
+		<apache.poi.version>3.10.1</apache.poi.version>
 	</properties>
 
 	<dependencyManagement>
@@ -78,6 +79,12 @@
 				<groupId>com.google.code.gson</groupId>
 				<artifactId>gson</artifactId>
 				<version>${gson.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi-ooxml</artifactId>
+				<version>${apache.poi.version}</version>
 			</dependency>
 
 			<dependency>
@@ -168,6 +175,12 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>
