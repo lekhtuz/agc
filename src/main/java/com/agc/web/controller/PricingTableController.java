@@ -67,6 +67,16 @@ public class PricingTableController {
 		return("pricingtable/search");
 	}
 
+	@RequestMapping(value="/curl", method = RequestMethod.GET, produces = "text/plain")
+	@ResponseBody
+	public String returnCurlScript(Model model)
+	{
+		String _M = "returnCurlScript(): ";
+		LOG.debug(_M +"started. agcModel=" + agcModel);
+
+		return("curlllllllllllll");
+	}
+
 	@RequestMapping(value="/{configCode}", method = RequestMethod.GET)
 	public String displayConfigCodeInfo(@PathVariable String configCode, Model model)
 	{
