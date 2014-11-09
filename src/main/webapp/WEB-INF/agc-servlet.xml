@@ -123,7 +123,13 @@
 		</property>
 	</bean>
 
-	<bean id="map2UserTransformer" class="com.agc.persistence.service.Map2BeanTransformer">
+	<util:map id="typeConverterMap" key-type="java.lang.Class" value-type="com.agc.persistence.util.Map2BeanTypeConverter">
+		<entry key="java.lang.Double">
+			<bean class="com.agc.persistence.util.Double2IntegerConverter"/>
+		</entry>
+	</util:map>
+
+	<bean id="map2UserTransformer" class="com.agc.persistence.util.Map2BeanTransformer">
 		<property name="targetClass" value="com.agc.persistence.domain.User"/>
 		<property name="mappingInfo">
 			<util:list>
@@ -135,7 +141,7 @@
 		</property>
 	</bean>
 
-	<bean id="map2EmployeeTransformer" class="com.agc.persistence.service.Map2BeanTransformer">
+	<bean id="map2EmployeeTransformer" class="com.agc.persistence.util.Map2BeanTransformer">
 		<property name="targetClass" value="com.agc.persistence.domain.Employee"/>
 		<property name="mappingInfo">
 			<util:list>

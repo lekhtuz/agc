@@ -1,0 +1,5 @@
+Commands to build/deploy/run/commit:
+
+cd $HOME/Dev-acg/w_acg/acg
+MAVEN_OPTS="-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8090 -Xdebug" mvn clean tomcat7:run-war
+git add --all . && git commit -m "COMMIT MESSAGE" && git push

@@ -13,6 +13,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.agc.persistence.util.Map2BeanTransformer;
+
 /**
  * @author Dmitry Lekhtuz
  *
@@ -44,7 +46,7 @@ public class Map2BeanTransformerTest {
 
 		transformer = new Map2BeanTransformer<TestBean>();
 
-		transformer.setTargetClass(TestBean.class.getName());
+		transformer.setTargetClass(TestBean.class);
 		transformer.setMappingInfo(mappingInfo);
 	}
 
