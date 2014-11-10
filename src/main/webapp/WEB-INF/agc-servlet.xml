@@ -79,7 +79,7 @@
 		<property name="sessionUrl" value="/user/session"/>
 		<property name="loginEmail" value="agc@lekhtuz.com"/>
 		<property name="loginPassword" value="agc"/>
-		<property name="connectTimeoutSeconds" value="5"/>
+		<property name="connectTimeoutSeconds" value="15"/>
 	</bean>
 
 	<!-- RecordSet Transformers -->
@@ -146,10 +146,10 @@
 		<property name="mappingInfo">
 			<util:list>
 				<array value-type="java.lang.String"><value>id</value><value>EmEmployeeNo</value></array>
-				<array value-type="java.lang.String"><value>username</value><value>EmSoSecNo</value></array>
-				<array value-type="java.lang.String"><value>password</value><value>EmNameLast</value></array>
+				<array value-type="java.lang.String"><value>ssn</value><value>EmSoSecNo</value></array>
+				<array value-type="java.lang.String"><value>lastName</value><value>EmNameLast</value></array>
 				<array value-type="java.lang.String"><value>firstName</value><value>EmNameFirst</value></array>
-				<array value-type="java.lang.String"><value>lastName</value><value>EmNameMI</value></array>
+				<array value-type="java.lang.String"><value>middleName</value><value>EmNameMI</value></array>
 				<array value-type="java.lang.String"><value>badgeNo</value><value>EmBadgeNo</value></array>
 				<array value-type="java.lang.String"><value>hireDate0</value><value>EmDateHire0</value></array>
 				<array value-type="java.lang.String"><value>hireDate1</value><value>EmDateHire1</value></array>

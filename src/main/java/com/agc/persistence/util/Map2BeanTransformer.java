@@ -42,7 +42,7 @@ public class Map2BeanTransformer<T> {
 		for (String propNames[] : getMappingInfo()) {
 			try {
 				// GSon does not have type information, and therefore does not always return values of the correct type.
-				// Example: all integers are converted to doubles
+				// Example: all integers are converted to doubles, booleans are 0.0/1.0
 				Object targetValue = data.get(propNames[1]);
 				Map2BeanTypeConverter converter = (Map2BeanTypeConverter)MapUtils.getObject(getTypeConverterMap(),
 						targetValue.getClass(), NoopConverter.getInstance());

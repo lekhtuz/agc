@@ -22,6 +22,7 @@ public class Employee {
 	private String lastName;
 
 	private String middleName;
+	private String ssn;
 	private int badgeNo;
 	private Date hireDate0;
 	private Date hireDate1;
@@ -108,6 +109,22 @@ public class Employee {
 	public void setMiddleName(String middleName)
 	{
 		this.middleName = middleName;
+	}
+
+	/**
+	 * @return the ssn
+	 */
+	public String getSsn()
+	{
+		return ssn;
+	}
+
+	/**
+	 * @param ssn the ssn to set
+	 */
+	public void setSsn(String ssn)
+	{
+		this.ssn = ssn;
 	}
 
 	/**
@@ -492,6 +509,8 @@ public class Employee {
 		builder.append(lastName);
 		builder.append(", middleName=");
 		builder.append(middleName);
+		builder.append(", ssn=");
+		builder.append(ssn);
 		builder.append(", badgeNo=");
 		builder.append(badgeNo);
 		builder.append(", hireDate0=");
